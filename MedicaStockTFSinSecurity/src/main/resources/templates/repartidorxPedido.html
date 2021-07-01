@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+		<meta charset="UTF-8"></meta>
+		<title>ENTREGAS</title>	
+
+		<script src="code.jquery.com/jquery-3.2.1.min.js"></script>	
+
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+
+		</link>
+
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+
+		
+		<script type="text/javascript" th:src="@{/js/race.js}"></script>	
+
+	</head>
+
+
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form th:action="@{/repartidorxPedido/registrar}" method="post" th:object="${repartidorxPedido}">
+				<div class="form-group">
+				
+					<label for="idrepartidorxPedido">ID:</label>
+					<input type="text" class="form-control" th:field="*{idRepartidorxPedido}"></input>
+					
+					<div class="form-group">
+					
+						<label for="pedido" class="col-sm-2 col-form-label"></label> PEDIDO A ENTREGAR:
+						<select class= "from-control" th:field= "*{pedido.idPedido}">
+						<option th:each="p: ${listaPedido}" th:value= "${p.idPedido}" th:text="${p.idPedido}"
+								th:selected="(${p.idPedido}== *{pedido.idPedido})">
+						</option>
+						</select>
+						<label>					</label>
+						<label for="repartidor" class="col-sm-2 col-form-label"></label> REPARTIDOR ASIGNADO:
+						<select class= "from-control" th:field= "*{repartidor.idRepartidor}">
+							<option th:each="r: ${listaRepartidor}" th:value= "${r.idRepartidor}" th:text="${r.idRepartidor}" 
+								th:selected="(${r.idRepartidor}== *{repartidor.idRepartidor})">
+							</option>
+						</select>
+					
+					<div>
+					</div>
+					</div>
+				
+				<button type="submit" class="btn btn-primary">Aceptar</button>
+				<a href="/repartidorxPedido/listar" class="btn btn-danger">Cancelar</a>
+				
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+</html>

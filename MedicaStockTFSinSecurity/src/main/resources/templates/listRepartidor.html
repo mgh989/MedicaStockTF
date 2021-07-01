@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+		<meta charset="UTF-8"></meta>
+		<title>STOCK</title>	
+
+		<script type="text/javascript"
+				src="ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>		
+
+		<link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+			rel="stylesheet" id="bootstrap-css">
+		</link>		
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+
+		<script src="code.jquery.com/jquery-1.11.1.min.js">
+		</script>		
+
+	</head>
+
+
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form id="myform">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<a style="border-bottom-color: rgb(64, 0, 64)" th:href="@{/repartidor/irRegistrar}"
+							id="add-row" type="button" class="btn btn-primary btn-md left block">
+							<span class="glyphicon gliphicon-plus"> AGREGAR REPARTIDOR</span>
+						</a>
+						
+						<table class="table table-bordered table-hover table-striped" id="tab_logic">
+							<thead>
+								<tr>
+									<th class="text-center">CODIGO</th>
+									<th class="text-center">USUARIO</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="r:${listaRepartidor}">
+									<td th:text="${r.idRepartidor}"></td>
+									<td th:text="${r.usuario.nombreUsuario}"></td>
+									
+									<td><a th:href="@{/repartidor/eliminar?id=}+${r.idRepartidor}">Eliminar</a></td>
+									<td><a th:href="@{'/repartidor/modificar/'+${r.idRepartidor}}">Modificar</a></td>
+								</tr>
+							</tbody>
+						</table>
+						
+					</div>
+				</div>
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+</html>

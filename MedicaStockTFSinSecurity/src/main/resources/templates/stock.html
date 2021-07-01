@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+		<meta charset="UTF-8"></meta>
+		<title>STOCK</title>	
+
+		<script src="code.jquery.com/jquery-3.2.1.min.js"></script>	
+
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+
+		</link>
+
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+
+		
+		<script type="text/javascript" th:src="@{/js/race.js}"></script>	
+
+	</head>
+
+
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form th:action="@{/stock/registrar}" method="post" th:object="${stock}">
+				<div class="form-group">
+				
+					<label for="idstock">ID:</label>
+					<input type="text" class="form-control" th:field="*{idStock}"></input>
+					
+					<div class="form-group">
+					
+						<label for="cantStock">CANTIDAD EN STOCK:</label>
+						<input type="text" class="form-control" th:field="*{cantStock}"></input>
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('cantStock')}"
+						th:errors="*{cantStock}">
+						</div>
+						
+						<label for="precioStock">PRECIO:</label>
+						<input type="text" class="form-control" th:field="*{precioStock}"></input>
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('precioStock')}"
+						th:errors="*{precioStock}">
+						</div>
+						
+						<label for="medicamento" class="col-sm-2 col-form-label"></label> MEDICAMENTO:
+						<select class= "from-control" th:field= "*{medicamento.idMedicamento}">
+						<option th:each="m: ${listaMedicamentos}" th:value= "${m.idMedicamento}" th:text="${m.nombreMedicamento}"
+								th:selected="(${m.idMedicamento}== *{medicamento.idMedicamento})">
+						</option>
+						</select>
+						
+						
+						<label for="farmacia" class="col-sm-2 col-form-label"></label> FARMACIA:
+						<select class= "from-control" th:field= "*{farmacia.idFarmacia}">
+							<option th:each="f: ${listaFarmacias}" th:value= "${f.idFarmacia}" th:text="${f.nombreFarmacia}" 
+								th:selected="(${f.idFarmacia}== *{farmacia.idFarmacia})">
+							</option>
+						</select>
+						
+						
+						
+					</div>
+					
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Aceptar</button>
+				<a href="/stock/listar" class="btn btn-danger">Cancelar</a>
+				
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+</html>

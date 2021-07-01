@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+		<meta charset="UTF-8"></meta>
+		<title>MedicaStock</title>	
+
+		<script type="text/javascript"
+				src="ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>		
+
+		<link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+			rel="stylesheet" id="bootstrap-css">
+		</link>		
+
+		<script
+			src="maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+
+		<script src="code.jquery.com/jquery-1.11.1.min.js">
+		</script>		
+
+	</head>
+
+
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form id="myform">
+				<div class="row clearfix">
+					<div class="col-md-12 column" align="center">
+						<img th:src="@{/Imagenes/LOGO.png}" width="1000" height="600" alt="logo" align="middle"></img>
+					</div>
+				</div>
+			</form>
+			<div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="/Imagenes/LOGO.PNG" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Misión</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>Facilitar el acceso a información de productos en farmacias a través de una plataforma virtual donde se puede visualizar el inventario de las mismas.</p>
+                    </div>
+              	</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+			
+			<div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Visión</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>Lograr hacernos reconocidos a nivel nacional y expandir nuestras fronteras a otros países de Latinoamérica, ofreciendo una plataforma confiable y de fácil manejo.</p>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <img src="/Imagenes/cruz.png" width="250" height="250" alt="App">
+                </div>
+            </div>
+        </div>
+			
+			
+			
+			
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+		<meta charset="UTF-8"></meta>
+		<title>PEDIDOS</title>	
+
+		<script src="code.jquery.com/jquery-3.2.1.min.js"></script>	
+
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+
+		</link>
+
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+
+		
+		<script type="text/javascript" th:src="@{/js/race.js}"></script>	
+
+	</head>
+
+
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form th:action="@{/pedido/registrar}" method="post" th:object="${pedido}">
+				<div class="form-group">
+				
+					<label for="idpedido">ID:</label>
+					<input type="text" class="form-control" th:field="*{idPedido}"></input>
+					
+					<div class="form-group">
+					
+						<label for="cliente" class="col-sm-2 col-form-label"></label> CLIENTE:
+						<select class= "from-control" th:field= "*{cliente.idCliente}">
+						<option th:each="c: ${listaCliente}" th:value= "${c.idCliente}" th:text="${c.idCliente}"
+								th:selected="(${c.idCliente}== *{cliente.idCliente})">
+						</option>
+						</select>
+						<label>					</label>
+						<label for="stock" class="col-sm-2 col-form-label"></label> PRODUCTO DEL STOCK:
+						<select class= "from-control" th:field= "*{stock.idStock}">
+							<option th:each="s: ${listaStock}" th:value= "${s.idStock}" th:text="${s.idStock}" 
+								th:selected="(${s.idStock}== *{stock.idStock})">
+							</option>
+						</select>
+					
+					<div>
+					</div>
+					
+						<label for="cantCompra">CANTIDAD DE COMPRA:</label>
+						<input type="text" class="form-control" th:field="*{cantCompra}"></input>
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('cantCompra')}"
+						th:errors="*{cantCompra}">
+						</div>
+									<div>
+					</div>		
+					<label>					</label>
+						<label for="metodoPago" class="col-sm-2 col-form-label"></label> MÉTODO DE PAGO:
+						<select class= "from-control" th:field= "*{metodoPago.idMetodoPago}">
+							<option th:each="mp: ${listaMetodoPago}" th:value= "${mp.idMetodoPago}" th:text="${mp.nombreMetodoPago}" 
+								th:selected="(${mp.idMetodoPago}== *{metodoPago.idMetodoPago})">
+							</option>
+						</select>
+						<div>
+					</div>
+						<label for="direccionPedido">DIRECCION DE ENTREGA:</label>
+						<input type="text" class="form-control" th:field="*{direccionPedido}"></input>
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('direccionPedido')}"
+						th:errors="*{direccionPedido}">
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Aceptar</button>
+				<a href="/pedido/listar" class="btn btn-danger">Cancelar</a>
+				
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+		<meta charset="UTF-8"></meta>
+		<title>USUARIO</title>	
+
+		<script type="text/javascript" src="ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>		
+
+		<link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+			rel="stylesheet" id="bootstrap-css">
+		</link>		
+
+		<script
+			src="maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+
+		<script src="code.jquery.com/jquery-1.11.1.min.js">
+		</script>		
+
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form th:action="@{/usuario/registrar}" method="post" th:object="${usuario}">
+				<div class="form-group">
+					<label for="idusuario">ID:</label>
+					<input type="text" class="form-control" th:field="*{idUsuario}"></input>
+					
+					<div class="form-group">
+						<label for="nombre">NOMBRE DEL USUARIO:</label>
+						<input type="text" class="form-control" th:field="*{nombreUsuario}" id="nombre"></input>
+						
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombreUsuario')}"
+						th:errors="*{nombreUsuario}">
+						</div>
+						
+						<label for="dni">DNI:</label>
+						<input type="text" class="form-control" th:field="*{dniUsuario}" id="dni"></input>
+						
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('dniUsuario')}"
+						th:errors="*{dniUsuario}">
+						</div>
+						
+						<label for="correo">CORREO DEL USUARIO:</label>
+						<input type="text" class="form-control" th:field="*{correoUsuario}" id="correo"></input>
+						
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('correoUsuario')}"
+						th:errors="*{correoUsuario}">
+						</div>
+						
+						<label for="contrasena">CONTRASEÑA DEL USUARIO:</label>
+						<input type="text" class="form-control" th:field="*{contrasenaUsuario}" id="contrasena"></input>
+						
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasenaUsuario')}"
+						th:errors="*{contrasenaUsuario}">
+						
+						
+						
+						</div>
+
+					</div>
+					
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Aceptar</button>
+				<a href="/usuario/listar" class="btn btn-danger">Cancelar</a>
+				
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+</html>

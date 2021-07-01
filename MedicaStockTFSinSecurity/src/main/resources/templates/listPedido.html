@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+		<meta charset="UTF-8"></meta>
+		<title>REALIZAR PEDIDO</title>	
+
+		<script type="text/javascript"
+				src="ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>		
+
+		<link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+			rel="stylesheet" id="bootstrap-css">
+		</link>		
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+
+		<script src="code.jquery.com/jquery-1.11.1.min.js">
+		</script>		
+
+	</head>
+
+
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form id="myform">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<a style="border-bottom-color: rgb(64, 0, 64)" th:href="@{/pedido/irRegistrar}"
+							id="add-row" type="button" class="btn btn-primary btn-md left block">
+							<span class="glyphicon gliphicon-plus"> REALIZAR PEDIDO</span>
+						</a>
+						
+						<table class="table table-bordered table-hover table-striped" id="tab_logic">
+							<thead>
+								<tr>
+									<th class="text-center">CÓDIGO</th>
+									<th class="text-center">CÓDIGO DEL CLIENTE</th>
+									<th class="text-center">CÓDIGO DEL STOCK</th>
+									<th class="text-center">CANTIDAD COMPRADA</th>
+									<th class="text-center">METODO DE PAGO</th>
+									<th class="text-center">DIRECCIÓN DE ENTREGA</th>
+									<th class="text-center">ELIMINAR</th>
+									<th class="text-center">MODIFICAR</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="p:${listaPedido}">
+									<td th:text="${p.idPedido}"></td>
+									<td th:text="${p.cliente.idCliente}"></td>
+									<td th:text="${p.stock.idStock}"></td>
+									<td th:text="${p.cantCompra}"></td>
+									<td th:text="${p.metodoPago.nombreMetodoPago}"></td>
+									<td th:text="${p.direccionPedido}"></td>
+									<td><a th:href="@{/pedido/eliminar?id=}+${p.idPedido}">Eliminar</a></td>
+									<td><a th:href="@{'/pedido/modificar/'+${p.idPedido}}">Modificar</a></td>
+								</tr>
+							</tbody>
+						</table>
+						
+					</div>
+				</div>
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+</html>
